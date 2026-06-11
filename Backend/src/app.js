@@ -3,9 +3,10 @@ const multer=require('multer')
 const app=express()
 const UploadFile=require('./services/storage.service')
 const model=require('./models/post.model')
+const cors=require('cors')
 
 app.use(express.json());
-
+app.use(cors())
 const upload=multer({storage:multer.memoryStorage()})
 
 
@@ -40,7 +41,7 @@ app.get('/posts',async(req,res)=>{
 
     res.status(200).json({ 
      message:"feacthed sucessfully",
-     posts:posts.map((elem)=>{return elem.image})
+     posts:posts
  
  
     })
